@@ -56,6 +56,7 @@ const client = new Discord.Client({
 
 
 client.commands = new Discord.Collection();
+client.cooldowns = new Discord.Collection();
 
 // building cmd handlers 
 const foldersPath = path.join(__dirname, 'commands');
@@ -99,17 +100,17 @@ for (const file of eventFiles) {
 //testSlash import 
 const testSlash = require('./testslash.js');
 
-client.on('message', async (message) => {
-    // If the message starts with the prefix and says ".deployslash", deploy the command
-    if (!message.content.startsWith(prefix) || message.author.id !== allowedUserId) {
-        console.log(error)
-        return;
-    }
+// client.on('message', async (message) => {
+//     // If the message starts with the prefix and says ".deployslash", deploy the command
+//     if (!message.content.startsWith(prefix) || message.author.id !== allowedUserId) {
+//         console.log(error)
+//         return;
+//     }
 
-    if (message.content.endsWith('testslash')) {
-        await testSlash(message);
-    }
-});
+//     if (message.content.endsWith('testslash')) {
+//         await testSlash(message);
+//     }
+// });
 
 
 
