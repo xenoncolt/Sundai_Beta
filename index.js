@@ -6,6 +6,7 @@ const { prefix, allowedUserId } = require('./config/config.json');
 
 
 
+
 // New client instance
 const client = new Discord.Client({ 
     intents: [
@@ -17,39 +18,39 @@ const client = new Discord.Client({
 
 
 // Use 'c' for the event parameter to keep it separate from the already defined 'client'
-client.once(Discord.Events.ClientReady, client => {
-    console.log(`${client.user.tag} is now Online...`);
-});
+// client.once(Discord.Events.ClientReady, client => {
+//     console.log(`${client.user.tag} is now Online...`);           /////MOVED//////
+// });
 
 
 
 
 // Execute cmd
-client.on(Discord.Events.InteractionCreate, async interaction => {
-    if (!interaction.isChatInputCommand()) return;
+// client.on(Discord.Events.InteractionCreate, async interaction => {
+//     if (!interaction.isChatInputCommand()) return;
 
-    const command = interaction.client.commands.get(interaction.commandName);
+//     const command = interaction.client.commands.get(interaction.commandName);
 
-    if (!command) {
-        console.error(`No command matching ${interaction.commandName} was found.`);
-        return;
-    }
+//     if (!command) {
+//         console.error(`No command matching ${interaction.commandName} was found.`);
+//         return;
+//     }
 
-    try {
-        await command.execute(interaction);
-    } catch (error) {
-        console.error(error);
-        if (interaction.replied || interaction.deferred) {
-            await interaction.followUp({
-                content: 'There was an error while executing this command!', ephemeral: true
-            });
-        } else {
-            await interaction.reply({
-                content: 'There was an error while executing this command!', ephemeral: true
-            });
-        }
-    }
-});
+//     try {
+//         await command.execute(interaction);
+//     } catch (error) {
+//         console.error(error);
+//         if (interaction.replied || interaction.deferred) {
+//             await interaction.followUp({
+//                 content: 'There was an error while executing this command!', ephemeral: true
+//             });
+//         } else {
+//             await interaction.reply({
+//                 content: 'There was an error while executing this command!', ephemeral: true
+//             });
+//         }
+//     }
+// });
 
 
 
@@ -75,6 +76,22 @@ for (const folder of commandFolders) {
         }
     }
     
+}
+
+
+// Ready msg and interaction import
+const eventsPath = path.join(__dirname, 'events');
+const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
+
+
+for (const file of eventFiles) {
+    const filePath = path.join(eventsPath, file);
+    const event = require(filePath);
+    if (event.once) {
+        client.once(event.name, (...args) => event.execute(...args));
+    } else {
+        client.on(event.name, (...args) => event.execute(...args));
+    }
 }
 
 
