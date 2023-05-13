@@ -1,0 +1,25 @@
+{
+  "name": "sundai_beta",
+  "version": "2.0.0",
+  "description": "A discord multipurpose bot with djs v14 (beta)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "discord-bot",
+    "v14-bot",
+    "music",
+    "mp3-convrt",
+    "games",
+    "meme",
+    "fun"
+  ],
+  "author": "Xenon Colt",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^14.11.0",
+    "dotenv": "^16.0.3"
+  }
+}
