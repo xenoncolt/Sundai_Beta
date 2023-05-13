@@ -1,0 +1,16 @@
+{
+    "status": {
+        "text": "This is test",
+        "type": "PLAYING"
+    },
+
+    "status2": {
+        "text": "This is also test",
+        "type": "WATCHING"
+    },
+    "status3": {
+        "text": "Gay not allowed",
+        "type": "LISTENING"
+    },
+    "url": "https://www.twitch.tv/xenoncolt"
+}
