@@ -3,7 +3,8 @@ const dotenv = require("dotenv");
 const fs = require('fs');
 const path = require('path');
 const { prefix, allowedUserId } = require('./config/config.json');
-
+const deploySlash = require('./deployslash');
+const deployslash = require('./deployslash');
 
 
 
@@ -98,7 +99,7 @@ for (const file of eventFiles) {
 
 
 //testSlash import 
-const testSlash = require('./testslash.js');
+//const testSlash = require('./testslash.js');
 
 // client.on('message', async (message) => {
 //     // If the message starts with the prefix and says ".deployslash", deploy the command
@@ -112,6 +113,11 @@ const testSlash = require('./testslash.js');
 //     }
 // });
 
+
+
+
+// deploySlash 
+deploySlash();
 
 
 
