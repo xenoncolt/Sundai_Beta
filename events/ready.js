@@ -19,6 +19,7 @@ module.exports = {
                       'Discord.js:': `v${Discord.version}`,
                       'Node.js:': `${process.version}`,
                       'Plattform:': `${process.platform} ${process.arch}`,
+                      'Bot Ping:' : `${client.ws.ping}ms`,
                       'Memory:': `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB / ${(process.memoryUsage().rss / 1024 / 1024).toFixed(2)} MB`
                     });
 

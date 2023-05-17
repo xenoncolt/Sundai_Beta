@@ -4,7 +4,7 @@ const Discord = require('discord.js');
 
 module.exports = {
     name: Discord.Events.InteractionCreate,
-    async execute(interaction, client) {
+    async execute(interaction) {
 
         
         //sync all command
@@ -16,6 +16,8 @@ module.exports = {
             console.error(`No command matching ${interaction.commandName} was found.`);
             return;        
         }
+
+        
 
 
 
@@ -37,7 +39,8 @@ module.exports = {
             if (now < expirationTime) {
                 const expiredTimestamp = Math.round(expirationTime / 1000);
                 return interaction.reply({
-                    content: `Bruh!!! Don't try to be flash. Wait, Let me process \`${command.data.name}\`. You can use it again <t:${expiredTimestamp}:R>`, ephemeral: true
+                    content: `Bruh!!! Don't try to be flash. Wait, Let me process \`${command.data.name}\`. You can use it again <t:${expiredTimestamp}:R>`, 
+                    ephemeral: true
                 });
             }
         }

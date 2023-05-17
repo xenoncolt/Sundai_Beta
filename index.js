@@ -4,7 +4,6 @@ const fs = require('fs');
 const path = require('path');
 const { prefix, allowedUserId } = require('./config/config.json');
 const deploySlash = require('./deployslash');
-const deployslash = require('./deployslash');
 
 
 
@@ -55,9 +54,13 @@ const client = new Discord.Client({
 
 
 
-
+// Collect all slash cmd
 client.commands = new Discord.Collection();
+// Store all coolDown 
 client.cooldowns = new Discord.Collection();
+
+
+
 
 // building cmd handlers 
 const foldersPath = path.join(__dirname, 'commands');
@@ -98,6 +101,7 @@ for (const file of eventFiles) {
 
 
 
+
 //testSlash import 
 //const testSlash = require('./testslash.js');
 
@@ -116,12 +120,13 @@ for (const file of eventFiles) {
 
 
 
+
 // deploySlash 
 deploySlash();
 
 
 
 
-
+// Bot Token
 dotenv.config();
 client.login(process.env.TOKEN);
