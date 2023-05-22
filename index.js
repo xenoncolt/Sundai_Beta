@@ -4,6 +4,8 @@ const fs = require('fs');
 const path = require('path');
 const { prefix, allowedUserId } = require('./config/config.json');
 const deploySlash = require('./deployslash');
+const express = require('express');
+const { port } = require('./config/web.json');
 
 
 
@@ -121,8 +123,30 @@ for (const file of eventFiles) {
 
 
 
+
+
+
 // deploySlash 
 deploySlash();
+
+
+
+
+
+
+
+// Website Config
+const webApp = express();
+
+webApp.get('/', (request, response) => {
+    return response.sendFile(`index.html`, { root: '.' });
+});
+
+webApp.listen(port, () => console.log(`App listening at http://localhost:${port}`));
+
+
+
+
 
 
 
